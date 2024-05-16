@@ -1,0 +1,73 @@
+---
+import Figma from "./icons/Figma.astro"
+import Behance from "./icons/Behance.astro"
+import LinkButton from "./LinkButton.astro"
+
+const TAGS = {
+    FIGMA: {
+        name: "Figma",
+        class: "bg-black text-white",
+        icon: Figma,
+    },
+}
+
+const DESIGNS = [
+    {
+        title: "Single product",
+        image: "/designs/carrito.webp",
+        tags: [TAGS.FIGMA],
+    },
+    {
+        title: "Landing page",
+        image: "/designs/landing.webp",
+        tags: [TAGS.FIGMA],
+    },
+    {
+        title: "Map",
+        image: "/designs/map.webp",
+        tags: [TAGS.FIGMA],
+    },
+    {
+        title: "Music player",
+        image: "/designs/reproductor.webp",
+        tags: [TAGS.FIGMA],
+    },
+]
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    {DESIGNS.map(({ image, title, tags }) => (
+        <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+            <div class="w-full flex flex-col gap-4">
+                <div class="h-full md:h-[290px] relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+                    <img alt={title} class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
+                </div>
+                <div class="w-full md:max-w-lg">
+                    <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
+                        {title}
+                    </h3>
+                    <div class="flex flex-wrap mt-2">
+                        <ul class="flex flex-row mb-2 gap-x-2">
+                            {tags.map((tag) => (
+                                <li>
+                                <span
+                                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
+                                >
+                                    <tag.icon class="size-4" />
+                                    {tag.name}
+                                </span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </article>
+    ))}
+</div>
+<div class="flex justify-center mt-8">
+    <LinkButton href="https://www.behance.net/nicomonclu0053">
+        <Behance class="size-4" />
+        Ver todos
+    </LinkButton>
+</div>
